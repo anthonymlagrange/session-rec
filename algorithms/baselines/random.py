@@ -8,7 +8,7 @@ class RandomPred:
     Initializes a random predcitor, which is a baseline predictor that gives back a random score for each item.  
     
     '''
-    def fit(self, data):
+    def fit( self, data, test=None ):
         '''
         Dummy function for training.
         
@@ -21,7 +21,7 @@ class RandomPred:
         '''
         pass
 
-    def predict_next(self, session_id, input_item_id, predict_for_item_ids, skip=False):
+    def predict_next(self, session_id, input_item_id, predict_for_item_ids, skip=False, mode_type='view', timestamp=0):
         '''
         Gives predicton scores for a selected set of items on how likely they be the next item in the session.
                 
@@ -42,3 +42,6 @@ class RandomPred:
         '''
         return pd.Series(data=np.random.rand(len(predict_for_item_ids)), index=predict_for_item_ids)
     
+
+    def clear(self):
+        pass

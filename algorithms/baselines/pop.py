@@ -27,8 +27,8 @@ class Pop:
         self.top_n = top_n
         self.item_key = item_key
         self.support_by_key = support_by_key
-    
-    def fit(self, data):
+
+    def fit( self, data, test=None ):
         '''
         Trains the predictor.
         
@@ -46,7 +46,7 @@ class Pop:
             self.pop_list.sort_values(ascending=False, inplace=True)
             self.pop_list = self.pop_list.head( self.top_n )  
     
-    def predict_next(self, session_id, input_item_id, predict_for_item_ids, input_user_id=None):
+    def predict_next(self, session_id, input_item_id, predict_for_item_ids, skip=False, mode_type='view', timestamp=0):
         '''
         Gives predicton scores for a selected set of items on how likely they be the next item in the session.
                 
@@ -70,3 +70,5 @@ class Pop:
         preds[mask] = self.pop_list[predict_for_item_ids[mask]]
         return pd.Series(data=preds, index=predict_for_item_ids)
         
+    def clear(self):
+        pass
